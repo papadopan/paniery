@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img">
+<title>Paniery basket icon</title>
+<path d="M72 55 Q56 40 68 20 Q86 36 72 55 Z" fill="#D85A30"/>
+<path d="M70 42 Q69 33 66 26" stroke="#F0997B" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M70 80 C70 30 130 30 130 80" stroke="#0F6E56" stroke-width="8" fill="none" stroke-linecap="round"/>
+<rect x="55" y="76" width="90" height="16" rx="8" fill="#085041"/>
+<path d="M60 92 L140 92 L124 150 Q122 162 110 162 L90 162 Q78 162 76 150 Z" fill="#0F6E56"/>
+<path d="M68 114 L132 114" stroke="#F3FBF6" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+<path d="M72 136 L128 136" stroke="#F3FBF6" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+</svg>
