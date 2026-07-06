@@ -5,17 +5,31 @@ import Image from "next/image";
 
 export default function Waitlist() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "duplicate" | "error">("idle");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email || !email.includes("@")) {
       setStatus("error");
       return;
     }
-    // TODO: wire up to real backend / email service
-    setStatus("success");
-    setEmail("");
+
+    setStatus("loading");
+
+    const res = await fetch("/api/waitlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    if (res.status === 201) {
+      setStatus("success");
+      setEmail("");
+    } else if (res.status === 409) {
+      setStatus("duplicate");
+    } else {
+      setStatus("error");
+    }
   }
 
   return (
@@ -48,7 +62,7 @@ export default function Waitlist() {
         {status === "success" ? (
           <div className="inline-flex items-center gap-3 bg-green-50 border border-green-200 text-green-700 font-semibold px-6 py-4 rounded-2xl">
             <span className="w-5 h-5 bg-green-700 text-white rounded-full flex items-center justify-center text-xs">✓</span>
-            You're on the list! We'll be in touch soon.
+            You&apos;re on the list! We&apos;ll be in touch soon.
           </div>
         ) : (
           <form
@@ -60,20 +74,22 @@ export default function Waitlist() {
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
-                if (status === "error") setStatus("idle");
+                if (status !== "idle") setStatus("idle");
               }}
               placeholder="your@email.com"
+              disabled={status === "loading"}
               className={`flex-1 px-5 py-3.5 rounded-full border ${
                 status === "error"
                   ? "border-orange-400 ring-2 ring-orange-200"
                   : "border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200"
-              } bg-green-50 text-green-900 placeholder:text-green-400 outline-none transition-all text-sm font-medium`}
+              } bg-green-50 text-green-900 placeholder:text-green-400 outline-none transition-all text-sm font-medium disabled:opacity-60`}
             />
             <button
               type="submit"
-              className="shrink-0 bg-green-700 hover:bg-green-800 text-white font-semibold px-7 py-3.5 rounded-full text-sm transition-colors shadow-lg shadow-green-700/20"
+              disabled={status === "loading"}
+              className="shrink-0 bg-green-700 hover:bg-green-800 disabled:opacity-60 text-white font-semibold px-7 py-3.5 rounded-full text-sm transition-colors shadow-lg shadow-green-700/20"
             >
-              Join Waitlist
+              {status === "loading" ? "Joining…" : "Join Waitlist"}
             </button>
           </form>
         )}
@@ -81,6 +97,11 @@ export default function Waitlist() {
         {status === "error" && (
           <p className="mt-2 text-xs text-orange-600 font-medium">
             Please enter a valid email address.
+          </p>
+        )}
+        {status === "duplicate" && (
+          <p className="mt-2 text-xs text-green-600 font-medium">
+            You&apos;re already on the list — we&apos;ll reach out soon!
           </p>
         )}
 
