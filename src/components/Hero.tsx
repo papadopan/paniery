@@ -190,7 +190,7 @@ export default function Hero() {
             </div>
 
             <div className="absolute -right-8 bottom-32 bg-white shadow-lg shadow-green-900/10 rounded-2xl px-4 py-3 border border-green-100">
-              <p className="text-xs font-bold text-green-900">8 supermarkets</p>
+              <p className="text-xs font-bold text-green-900">4 supermarkets</p>
               <p className="text-[10px] text-green-600">covered in Switzerland</p>
             </div>
           </div>
