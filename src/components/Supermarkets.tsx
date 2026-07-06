@@ -1,12 +1,8 @@
 const supermarkets = [
-  { name: "Migros", color: "#FF6600", initial: "M" },
-  { name: "Coop", color: "#E30613", initial: "C" },
-  { name: "Lidl", color: "#0050AA", initial: "L" },
-  { name: "Aldi", color: "#00529F", initial: "A" },
-  { name: "Denner", color: "#E30613", initial: "D" },
-  { name: "Volg", color: "#E30613", initial: "V" },
-  { name: "Manor", color: "#1A1A1A", initial: "M" },
-  { name: "Globus", color: "#8B1A2E", initial: "G" },
+  { name: "Migros", color: "#FF6600", initial: "M", url: "migros.ch" },
+  { name: "Coop", color: "#E30613", initial: "C", url: "coop.ch" },
+  { name: "Aldi", color: "#00529F", initial: "A", url: "aldi-now.ch" },
+  { name: "Farmy", color: "#4CAF50", initial: "F", url: "farmy.ch" },
 ];
 
 export default function Supermarkets() {
@@ -23,13 +19,13 @@ export default function Supermarkets() {
             <span className="text-green-700">in one place</span>
           </h2>
           <p className="mt-5 text-lg text-green-800/60 max-w-xl mx-auto leading-relaxed">
-            We track prices across the major Swiss supermarkets — and we're constantly
+            We track prices across the major Swiss supermarkets — and we&apos;re constantly
             adding more. More stores means more savings for you.
           </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {supermarkets.map(({ name, color, initial }) => (
+          {supermarkets.map(({ name, color, initial, url }) => (
             <div
               key={name}
               className="flex flex-col items-center gap-4 p-6 bg-white rounded-3xl border border-green-100 hover:border-green-200 hover:shadow-md hover:shadow-green-900/5 transition-all group"
@@ -40,7 +36,10 @@ export default function Supermarkets() {
               >
                 {initial}
               </div>
-              <p className="text-sm font-semibold text-green-900">{name}</p>
+              <div className="text-center">
+                <p className="text-sm font-semibold text-green-900">{name}</p>
+                <p className="text-xs text-green-600/60 mt-0.5">{url}</p>
+              </div>
             </div>
           ))}
         </div>
