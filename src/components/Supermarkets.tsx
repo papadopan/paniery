@@ -2,7 +2,6 @@ const supermarkets = [
   { name: "Migros", color: "#FF6600", initial: "M", url: "migros.ch" },
   { name: "Coop", color: "#E30613", initial: "C", url: "coop.ch" },
   { name: "Aldi", color: "#00529F", initial: "A", url: "aldi-now.ch" },
-  { name: "Farmy", color: "#4CAF50", initial: "F", url: "farmy.ch" },
 ];
 
 export default function Supermarkets() {
@@ -26,8 +25,11 @@ export default function Supermarkets() {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {supermarkets.map(({ name, color, initial, url }) => (
-            <div
+            <a
               key={name}
+              href={`https://${url}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex flex-col items-center gap-4 p-6 bg-white rounded-3xl border border-green-100 hover:border-green-200 hover:shadow-md hover:shadow-green-900/5 transition-all group"
             >
               <div
@@ -40,7 +42,7 @@ export default function Supermarkets() {
                 <p className="text-sm font-semibold text-green-900">{name}</p>
                 <p className="text-xs text-green-600/60 mt-0.5">{url}</p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 

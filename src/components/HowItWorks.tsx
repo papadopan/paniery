@@ -43,14 +43,9 @@ export default function HowItWorks() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step, i) => (
+          {steps.map((step) => (
             <div key={step.number} className="relative">
-              {/* Connector line */}
-              {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-[calc(100%_-_16px)] w-full h-px bg-green-700/50 z-0" />
-              )}
-
-              <div className="relative z-10 flex flex-col gap-5 p-7 bg-green-800/50 rounded-3xl border border-green-700/40 h-full">
+              <div className="flex flex-col gap-5 p-7 bg-green-800/50 rounded-3xl border border-green-700/40 h-full">
                 <span className="text-4xl font-extrabold text-green-600/40 leading-none">
                   {step.number}
                 </span>
