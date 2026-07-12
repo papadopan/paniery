@@ -23,14 +23,14 @@ export default function Supermarkets() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           {supermarkets.map(({ name, color, initial, url }) => (
             <a
               key={name}
               href={`https://${url}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-4 p-6 bg-white rounded-3xl border border-green-100 hover:border-green-200 hover:shadow-md hover:shadow-green-900/5 transition-all group"
+              className="flex flex-col items-center gap-4 p-6 bg-white rounded-3xl border border-green-100 hover:border-green-200 hover:shadow-md hover:shadow-green-900/5 transition-all group w-48"
             >
               <div
                 className="w-14 h-14 rounded-2xl flex items-center justify-center text-white text-xl font-extrabold shadow-sm group-hover:scale-105 transition-transform"
